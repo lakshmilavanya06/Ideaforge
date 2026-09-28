@@ -55,8 +55,7 @@ ideas      (id, user_id → users.id, title, description, language, difficulty, 
 votes      (id, idea_id → ideas.id, user_id → users.id, created_at)   UNIQUE(idea_id, user_id)
 comments   (id, idea_id → ideas.id, user_id → users.id, text, created_at)
 ```
-
-Things worth being able to explain in an interview:
+Important 
 - `user_id` is nullable on `ideas` and `comments` — that's what makes true anonymous posting possible, not just a display trick.
 - The `UNIQUE(idea_id, user_id)` constraint on `votes` is what actually prevents double-voting — it's enforced by the database itself, not just checked in application code.
 - Indexes on `ideas.language` and `ideas.difficulty` speed up the filter feature on the dashboard.
@@ -76,16 +75,4 @@ Things worth being able to explain in an interview:
 
 ---
 
-## Known limitations (be upfront about these)
 
-- **No real-time collaboration or AI assistant feature** — earlier drafts had a "Messages" and "AI Help" page, but both were pure UI mockups with no backend behind them (fake canned responses, no real data). Rather than ship something that looks functional but isn't, they were removed. Worth mentioning as a natural "what would you build next" answer if asked in an interview.
-- **No email verification / password reset** — out of scope for a resume project, but worth naming as a next step if asked "what would you add with more time?"
-- **Login/signup are rate-limited (20 attempts per 15 min per IP) but that's the only throttling in the app** — a real product would also rate-limit idea/comment posting to prevent spam floods.
-- The profanity filter is a simple keyword list, not a real moderation service — fine for a demo, not production-grade.
-- **No automated tests** — everything here was verified by hand (manual API calls end-to-end, checked in a browser). This is the most likely "what would you add next" follow-up for a project like this — a good honest answer is that you'd add integration tests for the API routes (e.g. with Jest + supertest) and a few frontend smoke tests before calling this production-ready.
-
----
-
-## Contributing / Origin
-
-Originally built as a frontend prototype; rebuilt with a real backend and database. See `SETUP_GUIDE.md` to run it locally and `DEPLOY_OCI.md` to deploy it.
