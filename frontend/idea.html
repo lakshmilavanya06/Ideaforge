@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IdeaForge - Anonymous Sharing</title>
+<link rel="stylesheet" href="css/idea.css">
+</head>
+<body>
+  <!-- Add this inside <body> of each HTML page -->
+
+<!-- Hamburger Menu Icon -->
+<div id="menu-toggle" onclick="toggleMenu()">
+  &#9776;
+</div>
+
+<!-- Sidebar Menu -->
+<nav id="sidebar">
+  <a href="login.html" id="navLogin"><i class="fas fa-sign-in-alt"></i> Login</a>
+  <a href="idea.html"><i class="fas fa-lightbulb"></i> Ideas</a>
+  <a href="topvotes.html"><i class="fas fa-chart-line"></i> Top Votes</a>
+  <a href="#" id="navLogout" style="display:none;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+</nav>
+
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<style>
+  /* Hamburger icon */
+  #menu-toggle {
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 999;
+    background-color: #c148c7;
+    color: white;
+    border-radius: 5px;
+  }
+
+  /* Sidebar styling */
+  #sidebar {
+    position: fixed;
+    top: 0;
+    left: -220px; /* Hidden by default */
+    width: 200px;
+    height: 100%;
+    background-color: #f5f5f5;
+    padding-top: 80px;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 5px rgba(134, 127, 201, 0.1);
+    z-index: 998;
+  }
+
+  #sidebar a {
+    display: block;
+    padding: 15px 20px;
+    color: #8a63ff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+  }
+
+  #sidebar a:hover {
+    background-color: #ddd;
+  }
+
+  /* Show sidebar */
+  #sidebar.active {
+    left: 0;
+  }
+</style>
+
+<script>
+  function toggleMenu() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("active");
+  }
+</script>
+  <div class="container">
+    <h1>IdeaForge</h1>
+
+    <div class="controls">
+      <div class="filters">
+        <input type="text" id="searchInput" placeholder="Search ideas..." />
+        <select id="languageFilter">
+          <option value="">All Languages</option>
+          <option value="JavaScript">JavaScript</option>
+          <option value="Python">Python</option>
+          <option value="C++">C++</option>
+          <option value="Java">Java</option>
+          <option value="Web">Web</option>
+          <option value="AI">AI</option>
+          <option value="Mobile">Mobile</option>
+        </select>
+        <select id="difficultyFilter">
+          <option value="">All Levels</option>
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+      </div>
+      <button id="themeToggle">🌓 Dark Mode</button>
+    </div>
+
+    <form id="ideaForm">
+      <input type="text" id="nickname" placeholder="Your nickname (optional)" />
+      <input type="text" id="title" placeholder="Idea Title" required maxlength="150" />
+      <textarea id="description" placeholder="Describe your idea..." rows="4" required maxlength="3000"></textarea>
+      <select id="language">
+        <option value="">Primary language/category (optional)</option>
+        <option value="JavaScript">JavaScript</option>
+        <option value="Python">Python</option>
+        <option value="C++">C++</option>
+        <option value="Java">Java</option>
+        <option value="Web">Web</option>
+        <option value="AI">AI</option>
+        <option value="Mobile">Mobile</option>
+      </select>
+      <input type="text" id="tags" placeholder="Other technologies (comma-separated, optional)" maxlength="200" />
+      <select id="difficulty" required>
+        <option value="">Select difficulty level</option>
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+      <button type="submit">Submit Idea</button>
+    </form>
+
+    <h2 style="margin-top: 30px;">Your Ideas</h2>
+    <div id="yourIdeasList" class="empty-state">
+      <p>Your submitted ideas will appear here</p>
+    </div>
+
+    <h2 style="margin-top: 30px;">Community Ideas</h2>
+    <div id="ideaList" class="empty-state">
+      <p>No ideas yet. Be the first to share!</p>
+    </div>
+  </div>
+  
+  <div class="voice-status" id="voiceStatus">Click the microphone and start speaking...</div>
+</body>
+
+<script src="js/api.js"></script>
+<script src="js/idea.js"></script>
+<script>
+  // Show Login or Logout in the sidebar depending on auth state
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLogin = document.getElementById('navLogin');
+    const navLogout = document.getElementById('navLogout');
+    if (isLoggedIn()) {
+      navLogin.style.display = 'none';
+      navLogout.style.display = 'block';
+      navLogout.addEventListener('click', (e) => {
+        e.preventDefault();
+        clearSession();
+        window.location.href = 'login.html';
+      });
+    }
+  });
+</script>
+</html>

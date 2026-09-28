@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="IdeaForge - Collaborate and innovate with a community of creators">
+  <title>IdeaForge | Connect, Collaborate, Create</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Background Elements -->
+  <div class="background-elements" id="particleNetwork">
+    <div class="floating-orb orb-1"></div>
+    <div class="floating-orb orb-2"></div>
+    <div class="floating-orb orb-3"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <img src="images/logo.jpeg" alt="IdeaForge Logo" class="logo-img">
+      <div class="logo-text">
+        <h1>IdeaForge</h1>
+        <div class="tagline">Where Brilliant Minds Converge</div>
+      </div>
+    </div>
+    
+    <div class="header-actions">
+      <button id="darkToggle" class="btn-icon" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+      </button>
+      <button id="menuToggle" class="btn-icon mobile-only" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Sidebar Navigation -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-nav">
+      <a href="login.html" class="nav-link">
+        <i class="fas fa-sign-in-alt nav-icon"></i>
+        <span class="nav-text">Login</span>
+      </a>
+      <a href="idea.html" class="nav-link">
+        <i class="fas fa-lightbulb nav-icon"></i>
+        <span class="nav-text">Ideas</span>
+      </a>
+      <a href="topvotes.html" class="nav-link featured">
+        <div class="badge-container">
+          <i class="fas fa-trophy nav-icon"></i>
+          <span class="badge-notification">Trending!</span>
+        </div>
+        <span class="nav-text">Top Votes</span>
+      </a>
+      <a href="login.html" class="nav-link">
+        <i class="fas fa-sign-out-alt nav-icon"></i>
+        <span class="nav-text">Logout</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="container">
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-content">
+          <h2 class="hero-title">Unleash Your Creativity with Like-minded Innovators</h2>
+          <p class="hero-description">Join a vibrant community where ideas flourish. Share, refine, and bring your visions to life with collaborative support and AI-powered assistance. IdeaForge is where the next big things are born.</p>
+          <div class="hero-actions flex gap-3">
+            <a href="images/Presentation 2.pdf" class="btn btn-primary">
+              <i class="fas fa-rocket"></i>Launch Your Ideas
+            </a>
+            <a href="https://www.youtube.com/watch?v=NnfFaIG7RSA&t=8s" class="btn btn-secondary">
+              <i class="fas fa-play-circle"></i> See How It Works
+            </a>
+          </div>
+        </div>
+        <img src="images/image.jpeg" alt="Collaboration Illustration" class="hero-image">
+      </section>
+
+      <!-- Spotlight Section -->
+      <section class="section">
+        <div class="spotlight card">
+          <div class="badge badge-featured">
+            <i class="fas fa-trophy icon"></i>
+            <span>Community's Choice</span>
+          </div>
+          <h3 class="spotlight-title">Smart Home Energy Optimizer</h3>
+          <p class="spotlight-description">AI-powered system that learns your habits to reduce energy bills while maintaining comfort. Currently leading with 248 votes from our community!</p>
+          <div class="meta-list">
+            <span class="meta-item"><i class="fas fa-heart"></i> 248 Votes</span>
+            <span class="meta-item"><i class="fas fa-comments"></i> 56 Comments</span>
+            <span class="meta-item"><i class="fas fa-user"></i> Nick_name</span>
+          </div>
+          <a href="topvotes.html" class="btn btn-spotlight">
+            View All Top Ideas <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section id="features" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Why IdeaForge Stands Out</h2>
+          <p class="section-subtitle">A platform designed to nurture innovation at every stage of your creative journey</p>
+        </div>
+        
+        <div class="grid grid-cols-2">
+          <div class="feature card">
+            <div class="feature-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3 class="feature-title">Idea Incubation</h3>
+            <p class="feature-description">From spark to flame, share and develop your concepts with constructive community feedback and expert guidance.</p>
+            <a href="idea.html" class="feature-link">
+              Explore Ideas <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+          
+          <div class="feature card featured-card">
+            <div class="feature-icon">
+              <i class="fas fa-fire"></i>
+            </div>
+            <h3 class="feature-title">Trending Innovations</h3>
+            <p class="feature-description">Discover what's capturing the community's imagination in our real-time trending ideas showcase.</p>
+            <a href="topvotes.html" class="feature-link">
+              See Trends <i class="fas fa-arrow-right"></i>
+            </a>
+            <div class="pulse-effect"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="grid grid-cols-4">
+        <div class="footer-brand">
+          <img src="images/logo.jpeg" alt="IdeaForge" class="footer-logo">
+          <h3 class="footer-title">IdeaForge</h3>
+          <p class="footer-text">Connect, Collaborate, Create - The future of innovation starts here.</p>
+        </div>
+        
+        <div class="link-group">
+          <h4>Explore</h4>
+          <a href="idea.html" class="footer-link">
+            <i class="fas fa-chevron-right"></i> Ideas
+          </a>
+          <a href="topvotes.html" class="footer-link">
+            <i class="fas fa-chevron-right"></i> Top Votes
+          </a>
+        </div>
+        
+        <div class="link-group">
+          <h4>Company</h4>
+          <a href="#" class="footer-link">
+            <i class="fas fa-chevron-right"></i> About
+          </a>
+          <a href="#" class="footer-link">
+            <i class="fas fa-chevron-right"></i> Blog
+          </a>
+          <a href="#" class="footer-link">
+            <i class="fas fa-chevron-right"></i> Careers
+          </a>
+          <a href="#" class="footer-link">
+            <i class="fas fa-chevron-right"></i> Contact
+          </a>
+        </div>
+        
+        <div class="link-group">
+          <h4>Join Our Community</h4>
+          <div class="social-links">
+            <a href="https://x.com" class="social-icon" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.linkedin.com" class="social-icon" aria-label="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/" class="social-icon" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://discord.com/" class="social-icon" aria-label="Discord">
+              <i class="fab fa-discord"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; 2025 IdeaForge. All rights reserved. | 
+          <a href="#" style="color: white; text-decoration: underline;">Privacy Policy</a> | 
+          <a href="#" style="color: white; text-decoration: underline;">Terms of Service</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

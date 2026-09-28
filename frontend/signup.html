@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idea Forge - Symmetrical Neon Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0a0a0a;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .login-container {
+            position: relative;
+            width: 350px;
+            padding: 40px;
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+            z-index: 20;
+            margin-top: 220px;
+            color: #fff;
+            border: 1px solid #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #444;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: #222;
+            color: #fff;
+        }
+
+        input:focus {
+            border-color: #6c5ce7;
+            outline: none;
+            box-shadow: 0 0 10px rgba(108, 92, 231, 0.5);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #5649c0;
+            box-shadow: 0 0 15px rgba(108, 92, 231, 0.7);
+        }
+
+        /* Error message styling */
+        .error-message {
+            color: #ff5555;
+            text-align: center;
+            margin-top: 15px;
+            height: 20px;
+            font-size: 14px;
+            text-shadow: 0 0 5px rgba(255, 85, 85, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .error-message.show {
+            opacity: 1;
+        }
+
+        /* Bulb Styles */
+        .bulb-container {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 220px;
+            z-index: 15;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bulb-top {
+            width: 30px;
+            height: 40px;
+            background: #777;
+            border-radius: 5px 5px 0 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .bulb-neck {
+            width: 20px;
+            height: 15px;
+            background: #666;
+            z-index: 2;
+        }
+
+        .bulb-glass {
+            width: 100px;
+            height: 100px;
+            background: rgba(245, 245, 245, 0.1);
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+            box-shadow: 
+                inset 5px 5px 15px rgba(0,0,0,0.3),
+                0 0 0 rgba(255,255,0,0);
+            transition: all 0.5s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .bulb-light {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(255,255,0,0);
+            box-shadow: 0 0 0 rgba(255,255,0,0);
+            transition: all 0.5s ease;
+            z-index: 0;
+        }
+
+        .bulb-filament {
+            position: absolute;
+            width: 4px;
+            height: 40px;
+            background: #444;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            transition: all 0.5s ease;
+        }
+
+        /* Glowing states */
+        .bulb-on .bulb-glass {
+            background: rgba(255, 255, 224, 0.2);
+            box-shadow: 
+                inset 5px 5px 15px rgba(255,255,200,0.2),
+                0 0 40px rgba(255,255,150,0.8);
+            border: 1px solid rgba(255,255,200,0.3);
+        }
+
+        .bulb-on .bulb-light {
+            background: rgba(255,255,150,0.2);
+            box-shadow: 0 0 120px 60px rgba(255,255,100,0.3);
+        }
+
+        .bulb-on .bulb-filament {
+            background: #ff0;
+            box-shadow: 0 0 15px #ff0;
+        }
+
+        /* Error state for bulb */
+        .bulb-error .bulb-glass {
+            background: rgba(255, 85, 85, 0.2);
+            box-shadow: 
+                inset 5px 5px 15px rgba(255,100,100,0.2),
+                0 0 40px rgba(255,100,100,0.8);
+            border: 1px solid rgba(255,100,100,0.3);
+        }
+
+        .bulb-error .bulb-light {
+            background: rgba(255,100,100,0.2);
+            box-shadow: 0 0 120px 60px rgba(255,85,85,0.3);
+        }
+
+        .bulb-error .bulb-filament {
+            background: #ff5555;
+            box-shadow: 0 0 15px #ff5555;
+        }
+
+        /* Symmetrical Neon Lights */
+        .neon-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .neon-active {
+            opacity: 1;
+        }
+
+        .neon-light {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            filter: blur(30px);
+            justify-self: center;
+            align-self: center;
+            animation: blink 3s infinite ease-in-out;
+            opacity: 0.8;
+        }
+
+        /* Error state for neon lights */
+        .neon-error .neon-light {
+            background: #ff5555 !important;
+            animation: blinkError 1s infinite ease-in-out;
+        }
+
+        /* Left side lights */
+        .neon-light:nth-child(1) {
+            background: #ff00ff;
+            grid-column: 1;
+            grid-row: 1;
+            animation-delay: 0s;
+        }
+        .neon-light:nth-child(2) {
+            background: #00ffff;
+            grid-column: 2;
+            grid-row: 2;
+            animation-delay: 0.5s;
+        }
+        .neon-light:nth-child(3) {
+            background: #ffff00;
+            grid-column: 1;
+            grid-row: 3;
+            animation-delay: 1s;
+        }
+
+        /* Right side lights (mirror of left) */
+        .neon-light:nth-child(4) {
+            background: #ff00ff;
+            grid-column: 5;
+            grid-row: 1;
+            animation-delay: 0s;
+        }
+        .neon-light:nth-child(5) {
+            background: #00ffff;
+            grid-column: 4;
+            grid-row: 2;
+            animation-delay: 0.5s;
+        }
+        .neon-light:nth-child(6) {
+            background: #ffff00;
+            grid-column: 5;
+            grid-row: 3;
+            animation-delay: 1s;
+        }
+
+        /* Center light */
+        .neon-light:nth-child(7) {
+            background: #ff0000;
+            grid-column: 3;
+            grid-row: 2;
+            animation-delay: 0.25s;
+            width: 150px;
+            height: 150px;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(0.9);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes blinkError {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(0.9);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+
+        .page-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center top, rgba(255,255,150,0.15) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bulb-on ~ .page-glow {
+            opacity: 1;
+        }
+
+        /* Error page glow */
+        .page-glow.error {
+            background: radial-gradient(circle at center top, rgba(255,85,85,0.15) 0%, transparent 70%);
+        }
+    </style>
+</head>
+<body>
+    <div class="bulb-container" id="bulb">
+        <div class="bulb-top"></div>
+        <div class="bulb-neck"></div>
+        <div class="bulb-glass">
+            <div class="bulb-filament"></div>
+            <div class="bulb-light"></div>
+        </div>
+    </div>
+
+    <div class="page-glow" id="pageGlow"></div>
+
+    <div class="neon-grid" id="neonLights">
+        <div class="neon-light"></div>
+        <div class="neon-light"></div>
+        <div class="neon-light"></div>
+        <div class="neon-light"></div>
+        <div class="neon-light"></div>
+        <div class="neon-light"></div>
+        <div class="neon-light"></div>
+    </div>
+
+    <div class="login-container">
+        <h1>Join Idea Forge</h1>
+        <form id="signupForm">
+            <div class="input-group">
+                <input type="text" id="name" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Password (min 6 characters)" required minlength="6">
+                <button type="button" id="togglePassword" style="margin-top:6px;background:none;border:none;color:#8a63ff;cursor:pointer;">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </div>
+            <div class="error-message" id="errorMessage"></div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <p style="margin-top:16px;text-align:center;">
+            Already have an account? <a href="login.html" style="color:#8a63ff;">Log in</a>
+        </p>
+    </div>
+
+    <script>
+        // Purely visual bulb/neon effects from the original template - kept as is.
+        document.addEventListener('DOMContentLoaded', function() {
+            const bulb = document.getElementById('bulb');
+            const neonLights = document.getElementById('neonLights');
+            const pageGlow = document.getElementById('pageGlow');
+            const nameInput = document.getElementById('name');
+            const passwordInput = document.getElementById('password');
+
+            if (nameInput) {
+                nameInput.addEventListener('focus', function() {
+                    bulb.classList.add('bulb-on');
+                    neonLights.classList.remove('neon-active');
+                    pageGlow.classList.remove('error');
+                });
+                nameInput.addEventListener('blur', function() {
+                    if (passwordInput !== document.activeElement) {
+                        bulb.classList.remove('bulb-on');
+                    }
+                });
+            }
+            if (passwordInput) {
+                passwordInput.addEventListener('focus', function() {
+                    neonLights.classList.add('neon-active');
+                    bulb.classList.remove('bulb-on');
+                    pageGlow.classList.remove('error');
+                });
+                passwordInput.addEventListener('blur', function() {
+                    neonLights.classList.remove('neon-active');
+                });
+            }
+        });
+    </script>
+    <script src="js/api.js"></script>
+    <script src="js/signup.js"></script>
+</body>
+</html>

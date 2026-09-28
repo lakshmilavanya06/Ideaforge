@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Ideas | IdeaForge</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <link rel="stylesheet" href="css/topvotes.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><i class="fas fa-fire"></i> Community Ideas</h1>
+      <p class="tagline">Discover the most popular ideas from our community</p>
+    </header>
+
+    <div class="controls">
+      <div class="sort-options">
+        <div class="sort-option active" data-sort="top">Top Voted</div>
+        <div class="sort-option" data-sort="newest">Newest</div>
+        <div class="sort-option" data-sort="discussed">Most Discussed</div>
+      </div>
+      
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search ideas...">
+        <button id="searchBtn"><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+
+    <div class="ideas-grid" id="ideasContainer">
+      <!-- Ideas will be loaded here -->
+    </div>
+
+    <div class="load-more">
+      <button id="loadMoreBtn" class="btn">
+        <i class="fas fa-plus"></i> Load More Ideas
+      </button>
+    </div>
+  </div>
+
+</body>
+<script src="js/api.js"></script>
+<script src="js/topvotes.js"></script>
+</html>
